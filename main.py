@@ -142,11 +142,13 @@ def main():
                         # check overfitting
                         if epoch > 10:
                             if check_overfitting(log.metrics_log, TARGET, 1, show=False):
+                                print('out by check_overfitting')
                                 break
                         # early stop
                         early = early_stop(
                             log.metrics_log[TARGET], early, threshold=0)
                         if early <= 0:
+                            print('out by early_stop')
                             break
                 train_writer.close()
                 test_writer.close()
