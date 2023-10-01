@@ -108,6 +108,8 @@ def main():
             model.load_state_dict(torch.load(CONFIG['conti_train']))
             print('load model and continue training')
 
+        print('start 3')
+
         retry = CONFIG['retry']  # =1
         while retry >= 0:
             # log
