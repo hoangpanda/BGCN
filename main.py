@@ -124,6 +124,8 @@ def main():
                     trainloss = train(model, epoch+1, train_loader, op, device, CONFIG, loss_func)
                     train_writer.add_scalars('loss/single', {"loss": trainloss}, epoch)
 
+                    print('test 5')
+
                     # test
                     if epoch % CONFIG['test_interval'] == 0:  
                         output_metrics = test(model, test_loader, device, CONFIG, metrics)
