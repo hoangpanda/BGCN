@@ -23,6 +23,7 @@ from tensorboardX import SummaryWriter
 
 
 def main():
+    print('start')
     #  set env
     setproctitle.setproctitle(f"train{CONFIG['name']}")
     os.environ["CUDA_VISIBLE_DEVICES"] = CONFIG['gpu_id']
