@@ -74,6 +74,8 @@ def main():
 
     time_path = time.strftime("%y%m%d-%H%M%S", time.localtime(time.time()))
 
+    print('start 2')
+
     for lr, decay, message_dropout, node_dropout \
             in product(CONFIG['lrs'], CONFIG['decays'], CONFIG['message_dropouts'], CONFIG['node_dropouts']):
 
