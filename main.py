@@ -128,6 +128,7 @@ def main():
 
                     # test
                     if epoch % CONFIG['test_interval'] == 0:  
+                        print('ok or not ok')
                         output_metrics = test(model, test_loader, device, CONFIG, metrics)
 
                         for metric in output_metrics:
