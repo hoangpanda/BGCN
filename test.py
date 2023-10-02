@@ -10,6 +10,7 @@ from time import time
 import os
 
 def test(model, loader, device, CONFIG, metrics):
+    print('bat dau test ne')
     '''
     test for dot-based model
     '''
