@@ -137,6 +137,8 @@ def main():
                             if metric==output_metrics[0]:
                                 test_writer.add_scalars('metric/single', {metric.get_title(): metric.metric}, epoch)
 
+                        print('da in metric xong')
+
                         # log
                         log.update_log(metrics, model) 
 
