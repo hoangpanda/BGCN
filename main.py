@@ -130,6 +130,7 @@ def main():
                     if epoch % CONFIG['test_interval'] == 0:  
                         print('ok or not ok')
                         output_metrics = test(model, test_loader, device, CONFIG, metrics)
+                        print('da test xong')
 
                         for metric in output_metrics:
                             test_writer.add_scalars('metric/all', {metric.get_title(): metric.metric}, epoch)
