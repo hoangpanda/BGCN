@@ -29,5 +29,6 @@ def test(model, loader, device, CONFIG, metrics):
         metric.stop()
         print('{}:{}'.format(metric.get_title(), metric.metric), end='\t')
     print('')
+    print('da test xong')
     return metrics
 

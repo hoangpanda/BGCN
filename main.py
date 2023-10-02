@@ -124,7 +124,7 @@ def main():
                     trainloss = train(model, epoch+1, train_loader, op, device, CONFIG, loss_func)
                     train_writer.add_scalars('loss/single', {"loss": trainloss}, epoch)
 
-                    print('test 5')
+                    print('traing done 5')
 
                     # test
                     if epoch % CONFIG['test_interval'] == 0:  
@@ -138,6 +138,8 @@ def main():
 
                         # log
                         log.update_log(metrics, model) 
+
+                        print('da chay toi doan nay')
 
                         # check overfitting
                         if epoch > 10:
