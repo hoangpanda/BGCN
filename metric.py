@@ -108,6 +108,8 @@ class NDCG(_Metric):
 
     def __call__(self, scores, ground_truth):
         print('*'*20)
+        print('shape of IDCSs: {}'.format(self.IDCGs.shape))
+        print(self.IDCGs)
         device = scores.device
         print('device: {}'.format(device))
     #    print('run device')
