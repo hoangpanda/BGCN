@@ -85,7 +85,7 @@ class NDCG(_Metric):
     In this work, NDCG = log(2)/log(1+hit_positions)
     '''
 
-    def DCG(self, hit, device=torch.device('cuda')):
+    def DCG(self, hit, device=torch.device('cpu')):
         hit = hit/torch.log2(torch.arange(2, self.topk+2,
                                           device=device, dtype=torch.float))
         return hit.sum(-1)
