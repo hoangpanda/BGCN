@@ -117,15 +117,15 @@ class NDCG(_Metric):
         dcg = self.DCG(is_hit, device)
         print('dcg {}'.format(dcg))
     #    print('run dcg')
-        idcg = self.IDCGs[num_pos]
-        print('idcg {}'.format(idcg))
-        print('run idcg')
-        ndcg = dcg/idcg.to(device)
-        print('run ndcg')
-        self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
-        self._sum += ndcg.sum().item()
-        print('doneeeeeeee')
-        print('*'*20)
+        # idcg = self.IDCGs[num_pos]
+        # print('idcg {}'.format(idcg))
+        # print('run idcg')
+        # ndcg = dcg/idcg.to(device)
+        # print('run ndcg')
+        # self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
+        # self._sum += ndcg.sum().item()
+        # print('doneeeeeeee')
+        # print('*'*20)
 
 
 class MRR(_Metric):
