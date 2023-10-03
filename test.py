@@ -23,12 +23,15 @@ def test(model, loader, device, CONFIG, metrics):
         rs = model.propagate() 
         print('propagate model')
         for users, ground_truth_u_b, train_mask_u_b in loader:
+            print('start evaluate')
             pred_b = model.evaluate(rs, users.to(device))  
             pred_b -= 1e8*train_mask_u_b.to(device)
             for metric in metrics:
+                print('abc')
                 metric(pred_b, ground_truth_u_b.to(device))
     print('Test: time={:d}s'.format(int(time()-start)))
     for metric in metrics:
+        print('xyz')
         metric.stop()
         print('{}:{}'.format(metric.get_title(), metric.metric), end='\t')
     print('')
