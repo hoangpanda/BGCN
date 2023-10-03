@@ -129,6 +129,7 @@ def main():
                     # test
                     
                     if epoch % CONFIG['test_interval'] == 0:  
+                        print('epoch: {} vs test_interval: {}'.format(epoch, CONFIG['test_interval']))
                         print('ok or not ok')
                         output_metrics = test(model, test_loader, device, CONFIG, metrics)
                         print('da test xong')
