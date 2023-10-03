@@ -30,9 +30,11 @@ def test(model, loader, device, CONFIG, metrics):
             cnt = 0
             print('size of metrics {} --- second check'.format(len(metrics)))
             for metric in metrics:
+                print('size of metrics {} --- loop check'.format(len(metrics)))
                 cnt += 1
                 print('ab {}'.format(cnt))
                 metric(pred_b, ground_truth_u_b.to(device))
+                print('calculated metric {}'.format(cnt))
                 print('done')
             print('1')
     print('Test: time={:d}s'.format(int(time()-start)))
