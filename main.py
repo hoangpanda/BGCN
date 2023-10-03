@@ -125,7 +125,7 @@ def main():
                     train_writer.add_scalars('loss/single', {"loss": trainloss}, epoch)
 
                     print('traing done 5')
-
+                    print('day la epoch {}'.format(epoch))
                     # test
                     """
                     if epoch % CONFIG['test_interval'] == 0:  
