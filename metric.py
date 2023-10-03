@@ -107,7 +107,6 @@ class NDCG(_Metric):
         return "NDCG@{}".format(self.topk)
 
     def __call__(self, scores, ground_truth):
-        print('*'*20)
         print(self.IDCGs[[0,1,2]])
         print('shape of IDCSs: {}'.format(self.IDCGs.shape))
         print(self.IDCGs)
@@ -119,6 +118,8 @@ class NDCG(_Metric):
     #    print('run is_hit')
         num_pos = ground_truth.sum(dim=1).clamp(0, self.topk).to(torch.long)
         print('go')
+        print(self.IDCGs)
+        print(num_pos)
         print(self.IDCGs[num_pos])
         #filter = [x if x <= 0 for x in num_pos]
 
