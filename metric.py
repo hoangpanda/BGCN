@@ -117,6 +117,8 @@ class NDCG(_Metric):
         print('is_hit: {}'.format(is_hit))
     #    print('run is_hit')
         num_pos = ground_truth.sum(dim=1).clamp(0, self.topk).to(torch.long)
+        print('go')
+        print(self.IDCGs[num_pos])
         #filter = [x if x <= 0 for x in num_pos]
 
         filter = []
