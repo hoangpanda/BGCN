@@ -26,9 +26,12 @@ def test(model, loader, device, CONFIG, metrics):
             print('start evaluate')
             pred_b = model.evaluate(rs, users.to(device))  
             pred_b -= 1e8*train_mask_u_b.to(device)
+            cnt = 0
             for metric in metrics:
-                print('abc')
+                cnt += 1
+                print('ab {}'.format(cnt))
                 metric(pred_b, ground_truth_u_b.to(device))
+                print('done')
     print('Test: time={:d}s'.format(int(time()-start)))
     for metric in metrics:
         print('xyz')
