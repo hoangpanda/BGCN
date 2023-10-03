@@ -107,14 +107,23 @@ class NDCG(_Metric):
         return "NDCG@{}".format(self.topk)
 
     def __call__(self, scores, ground_truth):
+        print('*'*20)
         device = scores.device
+        print('run device')
         is_hit = get_is_hit(scores, ground_truth, self.topk)
+        print('run is_hit')
         num_pos = ground_truth.sum(dim=1).clamp(0, self.topk).to(torch.long)
+        print('run num_pos')
         dcg = self.DCG(is_hit, device)
+        print('run dcg')
         idcg = self.IDCGs[num_pos]
+        print('run idcg')
         ndcg = dcg/idcg.to(device)
+        print('run ndcg')
         self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
         self._sum += ndcg.sum().item()
+        print('doneeeeeeee')
+        print('*'*20)
 
 
 class MRR(_Metric):
