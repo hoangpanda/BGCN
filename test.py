@@ -16,10 +16,12 @@ def test(model, loader, device, CONFIG, metrics):
     '''
     model.eval()
     for metric in metrics:
+    print('bat dau test trong metric ne')
         metric.start()
     start = time()
     with torch.no_grad():
         rs = model.propagate() 
+        print('propagate model')
         for users, ground_truth_u_b, train_mask_u_b in loader:
             pred_b = model.evaluate(rs, users.to(device))  
             pred_b -= 1e8*train_mask_u_b.to(device)
