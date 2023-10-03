@@ -60,7 +60,7 @@ def main():
 
     #  metric
     # metrics = [Recall(20), NDCG(20), Recall(40), NDCG(40), Recall(80), NDCG(80)]
-    metrics = [Recall(20), Recall(40), NDCG(20)]
+    metrics = [Recall(20), Recall(40)]
     TARGET = 'Recall@20'
 
     #  loss
