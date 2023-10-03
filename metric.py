@@ -131,10 +131,16 @@ class MRR(_Metric):
         return "MRR@{}".format(self.topk)
 
     def __call__(self, scores, ground_truth):
+        print('*'*20)
+        print('bat dau chay NDCG')
         device = scores.device
+        print('da chay qua device')
         is_hit = get_is_hit(scores, ground_truth, self.topk)
         is_hit /= self.denominator.to(device)
+        print('da chay qua is_hit')
         first_hit_rr = is_hit.max(dim=1)[0]
         num_pos = ground_truth.sum(dim=1)
         self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
         self._sum += first_hit_rr.sum().item()
+        print('da chay xong')
+        print('*'*20)
