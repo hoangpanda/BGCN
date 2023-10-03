@@ -15,6 +15,7 @@ def test(model, loader, device, CONFIG, metrics):
     test for dot-based model
     '''
     model.eval()
+    print('size of metrics {} --- first check'.format(len(metrics)))
     for metric in metrics:
         print('bat dau test trong metric ne')
         metric.start()
@@ -27,6 +28,7 @@ def test(model, loader, device, CONFIG, metrics):
             pred_b = model.evaluate(rs, users.to(device))  
             pred_b -= 1e8*train_mask_u_b.to(device)
             cnt = 0
+            print('size of metrics {} --- second check'.format(len(metrics)))
             for metric in metrics:
                 cnt += 1
                 print('ab {}'.format(cnt))
