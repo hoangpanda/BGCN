@@ -115,6 +115,10 @@ class NDCG(_Metric):
         print('is_hit: {}'.format(is_hit))
     #    print('run is_hit')
         num_pos = ground_truth.sum(dim=1).clamp(0, self.topk).to(torch.long)
+        filter = [x if x <= 0 for x in num_pos]
+        print('shape of filter: {}'.format(len(filter)))
+        print('filter: {}'.format(filter))
+        print('shape of num_pos: {}'.format(num_pos.shape))
         print('num_pos: {}'.format(num_pos))
     #    print('run num_pos')
         dcg = self.DCG(is_hit, device)
