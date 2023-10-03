@@ -33,7 +33,7 @@ def test(model, loader, device, CONFIG, metrics):
                 print('size of metrics {} --- loop check'.format(len(metrics)))
                 cnt += 1
                 print('ab {}'.format(cnt))
-                metric(pred_b, ground_truth_u_b.to(device))
+            #    metric(pred_b, ground_truth_u_b.to(device))
                 print('calculated metric {}'.format(cnt))
                 print('done')
             print('1')
