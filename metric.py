@@ -107,6 +107,7 @@ class NDCG(_Metric):
         return "NDCG@{}".format(self.topk)
 
     def __call__(self, scores, ground_truth):
+        self.IDCGs = self.to(scores.device)
         print(self.IDCGs[[0,1,2]])
         print('shape of IDCSs: {}'.format(self.IDCGs.shape))
         print(self.IDCGs)
