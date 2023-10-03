@@ -127,6 +127,7 @@ def main():
                     print('traing done 5')
 
                     # test
+                    """
                     if epoch % CONFIG['test_interval'] == 0:  
                         print('ok or not ok')
                         output_metrics = test(model, test_loader, device, CONFIG, metrics)
@@ -155,6 +156,7 @@ def main():
                         if early <= 0:
                             print('out by early_stop')
                             break
+                """
                 train_writer.close()
                 test_writer.close()
 
