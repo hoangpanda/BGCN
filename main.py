@@ -44,9 +44,9 @@ def main():
             dataset.get_dataset(CONFIG['path'], CONFIG['dataset_name'], task=CONFIG['task'])
 
     train_loader = DataLoader(bundle_train_data, 2048, True,
-                              num_workers=8, pin_memory=True)
+                              num_workers=2, pin_memory=True)
     test_loader = DataLoader(bundle_test_data, 4096, False,
-                             num_workers=16, pin_memory=True)
+                             num_workers=2, pin_memory=True)
 
     #  pretrain
     if 'pretrain' in CONFIG:
@@ -138,7 +138,7 @@ def main():
                             test_writer.add_scalars('metric/all', {metric.get_title(): metric.metric}, epoch)
                             if metric==output_metrics[0]:
                                 test_writer.add_scalars('metric/single', {metric.get_title(): metric.metric}, epoch)
-                                
+
                         print('da in metric xong')
 
                         # log
