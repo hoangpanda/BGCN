@@ -109,14 +109,16 @@ class NDCG(_Metric):
     def __call__(self, scores, ground_truth):
         print('*'*20)
         device = scores.device
-        print('run device')
+    #    print('run device')
         is_hit = get_is_hit(scores, ground_truth, self.topk)
-        print('run is_hit')
+    #    print('run is_hit')
         num_pos = ground_truth.sum(dim=1).clamp(0, self.topk).to(torch.long)
-        print('run num_pos')
+    #    print('run num_pos')
         dcg = self.DCG(is_hit, device)
-        print('run dcg')
+        print('dcg {}'.format(dcg))
+    #    print('run dcg')
         idcg = self.IDCGs[num_pos]
+        print('idcg {}'.format(idcg))
         print('run idcg')
         ndcg = dcg/idcg.to(device)
         print('run ndcg')
