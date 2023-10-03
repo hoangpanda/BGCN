@@ -85,7 +85,7 @@ class NDCG(_Metric):
     In this work, NDCG = log(2)/log(1+hit_positions)
     '''
 
-    def DCG(self, hit, device=torch.device('cpu')):
+    def DCG(self, hit, device=torch.device('cuda')):
         hit = hit/torch.log2(torch.arange(2, self.topk+2,
                                           device=device, dtype=torch.float))
         return hit.sum(-1)
@@ -116,16 +116,16 @@ class NDCG(_Metric):
     #    print('run num_pos')
         dcg = self.DCG(is_hit, device)
         print('dcg {}'.format(dcg))
-    #    print('run dcg')
-        # idcg = self.IDCGs[num_pos]
-        # print('idcg {}'.format(idcg))
-        # print('run idcg')
-        # ndcg = dcg/idcg.to(device)
-        # print('run ndcg')
-        # self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
-        # self._sum += ndcg.sum().item()
-        # print('doneeeeeeee')
-        # print('*'*20)
+        print('run dcg')
+        idcg = self.IDCGs[num_pos]
+        print('idcg {}'.format(idcg))
+        print('run idcg')
+        ndcg = dcg/idcg.to(device)
+        print('run ndcg')
+        self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
+        self._sum += ndcg.sum().item()
+        print('doneeeeeeee')
+        print('*'*20)
 
 
 class MRR(_Metric):
