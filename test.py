@@ -32,6 +32,7 @@ def test(model, loader, device, CONFIG, metrics):
                 print('ab {}'.format(cnt))
                 metric(pred_b, ground_truth_u_b.to(device))
                 print('done')
+            print('1')
     print('Test: time={:d}s'.format(int(time()-start)))
     for metric in metrics:
         print('xyz')
