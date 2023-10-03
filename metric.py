@@ -115,7 +115,13 @@ class NDCG(_Metric):
         print('is_hit: {}'.format(is_hit))
     #    print('run is_hit')
         num_pos = ground_truth.sum(dim=1).clamp(0, self.topk).to(torch.long)
-        filter = [x if x <= 0 for x in num_pos]
+        #filter = [x if x <= 0 for x in num_pos]
+
+        filter = []
+        for x in num_pos:
+            if x <= 0:
+                filter.append(x)
+
         print('shape of filter: {}'.format(len(filter)))
         print('filter: {}'.format(filter))
         print('shape of num_pos: {}'.format(num_pos.shape))
