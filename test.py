@@ -16,7 +16,7 @@ def test(model, loader, device, CONFIG, metrics):
     '''
     model.eval()
     for metric in metrics:
-    print('bat dau test trong metric ne')
+        print('bat dau test trong metric ne')
         metric.start()
     start = time()
     with torch.no_grad():
