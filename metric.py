@@ -108,44 +108,15 @@ class NDCG(_Metric):
 
     def __call__(self, scores, ground_truth):
         self.IDCGs = self.IDCGs.to(scores.device)
-        print(self.IDCGs[[0,1,2]])
-        print('shape of IDCSs: {}'.format(self.IDCGs.shape))
-        print(self.IDCGs)
         device = scores.device
-        print('device: {}'.format(device))
-    #    print('run device')
         is_hit = get_is_hit(scores, ground_truth, self.topk)
-        print('is_hit: {}'.format(is_hit))
-    #    print('run is_hit')
         num_pos = ground_truth.sum(dim=1).clamp(0, self.topk).to(torch.long)
-        print('go')
-        print(self.IDCGs)
-        print(num_pos)
-        print(self.IDCGs[num_pos])
-        #filter = [x if x <= 0 for x in num_pos]
-
-        filter = []
-        for x in num_pos:
-            if x <= 0:
-                filter.append(x)
-
-        print('shape of filter: {}'.format(len(filter)))
-        print('filter: {}'.format(filter))
-        print('shape of num_pos: {}'.format(num_pos.shape))
-        print('num_pos: {}'.format(num_pos))
-    #    print('run num_pos')
         dcg = self.DCG(is_hit, device)
-        print('dcg {}'.format(dcg))
-    #    print('run dcg')
         idcg = self.IDCGs[num_pos]
-        print('idcg {}'.format(idcg))
-        print('run idcg')
         ndcg = dcg/idcg.to(device)
-        print('run ndcg')
         self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
         self._sum += ndcg.sum().item()
-        print('doneeeeeeee')
-        print('*'*20)
+
 
 
 class MRR(_Metric):
@@ -162,16 +133,10 @@ class MRR(_Metric):
         return "MRR@{}".format(self.topk)
 
     def __call__(self, scores, ground_truth):
-        print('*'*20)
-        print('bat dau chay NDCG')
         device = scores.device
-        print('da chay qua device')
         is_hit = get_is_hit(scores, ground_truth, self.topk)
         is_hit /= self.denominator.to(device)
-        print('da chay qua is_hit')
         first_hit_rr = is_hit.max(dim=1)[0]
         num_pos = ground_truth.sum(dim=1)
         self._cnt += scores.shape[0] - (num_pos == 0).sum().item()
         self._sum += first_hit_rr.sum().item()
-        print('da chay xong')
-        print('*'*20)

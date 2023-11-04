@@ -9,7 +9,7 @@ CONFIG = {
     'gpu_id': "0",
     'note': 'some_note',
     'model': 'BGCN',
-    'dataset_name': 'NetEase',
+    'dataset_name': 'clothing',
     'task': 'tune',
     'eval_task': 'test',
 

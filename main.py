@@ -60,8 +60,6 @@ def main():
 
     #  metric
     metrics = [Recall(20), NDCG(20), Recall(40), NDCG(40), Recall(80), NDCG(80)]
-    #metrics = [Recall(20), Recall(40), Recall(80), NDCG(80)]
-    #metrics = [NDCG(20)]
     TARGET = 'Recall@20'
 
     #  loss
@@ -110,8 +108,6 @@ def main():
             model.load_state_dict(torch.load(CONFIG['conti_train']))
             print('load model and continue training')
 
-        print('start 3')
-
         retry = CONFIG['retry']  # =1
         while retry >= 0:
             # log
@@ -126,27 +122,19 @@ def main():
                     trainloss = train(model, epoch+1, train_loader, op, device, CONFIG, loss_func)
                     train_writer.add_scalars('loss/single', {"loss": trainloss}, epoch)
 
-                    print('traing done 5')
-                    print('day la epoch {}'.format(epoch))
                     # test
                     
                     if epoch % CONFIG['test_interval'] == 0:  
                         print('epoch: {} vs test_interval: {}'.format(epoch, CONFIG['test_interval']))
-                        print('ok or not ok')
                         output_metrics = test(model, test_loader, device, CONFIG, metrics)
-                        print('da test xong')
 
                         for metric in output_metrics:
                             test_writer.add_scalars('metric/all', {metric.get_title(): metric.metric}, epoch)
                             if metric==output_metrics[0]:
                                 test_writer.add_scalars('metric/single', {metric.get_title(): metric.metric}, epoch)
 
-                        print('da in metric xong')
-
                         # log
                         log.update_log(metrics, model) 
-
-                        print('da chay toi doan nay')
 
                         # check overfitting
                         if epoch > 10:

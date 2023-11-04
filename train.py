@@ -23,7 +23,5 @@ def train(model, epoch, loader, optim, device, CONFIG, loss_func):
             print('U-B Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(
                 epoch, (i+1) * loader.batch_size, len(loader.dataset),
                 100. * (i+1) / len(loader), loss))
-    print('Train Epoch: {}: time = {:d}s'.format(epoch, int(time()-start)))
-    print('da traning xong epoch {}'.format(epoch))
     return loss
 
